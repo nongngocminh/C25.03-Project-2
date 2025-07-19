@@ -8,11 +8,6 @@ public class GameObjectData : MonoBehaviour
     [SerializeField] public EColorData colorData;
     [SerializeField] public ColorDataConfig colorDataConfig;
 
-    public void Start()
-    {
-        ChangeColor(colorDataConfig.GetMaterial((int)colorData));
-    }
-
     public void ChangeColor(Material material)
     {
         meshRenderer.material = material;

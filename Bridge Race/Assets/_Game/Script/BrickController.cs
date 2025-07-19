@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BrickController : GameObjectData
 {
-    [SerializeField] BoxCollider boxcol;
+    [SerializeField] public BoxCollider boxCol;
+    [SerializeField] private float delayReAppear;
 
     public bool IsSameColorData(EColorData colorData)
     {
@@ -13,8 +14,21 @@ public class BrickController : GameObjectData
 
     internal void DisableBrick()
     {
-        boxcol.enabled = false;
+        IEnumerator coroutine = ReAppear();
+
+        boxCol.enabled = false;
         meshRenderer.enabled = false;
+
+        if (coroutine != null) StopCoroutine(coroutine);
+        coroutine = ReAppear();
+        StartCoroutine(coroutine);
     }
 
+
+    private IEnumerator ReAppear()
+    {
+        yield return new WaitForSeconds(delayReAppear);
+        boxCol.enabled = true;
+        meshRenderer.enabled = true;
+    }
 }

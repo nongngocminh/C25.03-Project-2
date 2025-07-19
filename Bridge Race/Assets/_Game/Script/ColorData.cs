@@ -8,6 +8,7 @@ using UnityEngine;
 public class ColorDataConfig : ScriptableObject
 {
     public List<Material> materials = new List<Material>();
+    
     public Material GetMaterial(int index)
     {
         return materials[index];
